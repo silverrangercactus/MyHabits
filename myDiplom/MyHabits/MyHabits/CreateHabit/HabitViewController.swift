@@ -50,6 +50,7 @@ class HabitViewController: UIViewController {
         let store = HabitsStore.shared
         store.habits.append(newHabit)
 //        dump(store.habits)
+        print(store.habits.count)
         self.closeHabitViewController()
     }
     
