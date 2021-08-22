@@ -23,21 +23,15 @@ class HabitsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
-
-//        let dedede = UserDefaults.standard
-//        let ddidid = dedede.dictionaryRepresentation()
-//        ddidid.keys.forEach {key in
-//            dedede.removeObject(forKey: key)
-//        }
-        setHabitsCollectionView()
+        setHabitsCollectionView()        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         habitsViewCollectian.reloadData()
+        
     }
     
    

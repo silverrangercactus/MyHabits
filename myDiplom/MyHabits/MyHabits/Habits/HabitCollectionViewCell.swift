@@ -21,16 +21,17 @@ class HabitCollectionViewCell: UICollectionViewCell {
         didSet {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "H:mm"
-            
+           
             habitLabelCell.text = habit?.name
             habitLabelCell.textColor = habit?.color
             habitDescriptionCell.text = "Каждый день в " + String(describing: dateFormatter.string(from: habit!.date))
-            habitCountCell.text = "Счетчик: " + String(describing: habit!.trackDates.count)
+            habitCountCell.text = "Счетчик: " + String(describing: (habit?.trackDates.count ?? 0))
             habitDoneCell.layer.borderColor = habit?.color.cgColor
             
             if habit?.isAlreadyTakenToday == true {
                 habitDoneCell.backgroundColor = habit?.color
-                habitDoneCell.setBackgroundImage(UIImage(systemName: "checkmark"), for: .normal)
+                habitDoneCell.setImage(UIImage(systemName: "checkmark"), for: .normal)
+                habitDoneCell.tintColor = .white
             } else {
                 habitDoneCell.backgroundColor = .white
                 habitDoneCell.setBackgroundImage(.none, for: .normal)

@@ -9,16 +9,6 @@ import UIKit
 
 class HabitView: UIView {
     
-    public var habit: Habit? {
-        didSet {
-            nameHabitText.text = habit?.name
-            nameHabitText.textColor = habit?.color
-            colorHabitButton.backgroundColor = habit?.color
-            timeHabitText.text = String(describing: (habit!.dateString))
-            timeHabitPicker.date = habit!.date
-        }
-    }
-
     var nameHabitLabel: UILabel = {
         let nameHabitLabel = UILabel()
         nameHabitLabel.text = "НАЗВАНИЕ"
@@ -66,6 +56,13 @@ class HabitView: UIView {
         return timeHabitText
     }()
     
+    var timeSelectedHabitText: UILabel = {
+        let timeSelectedHabitText = UILabel()
+        timeSelectedHabitText.font = UIFont.systemFont(ofSize: 17, weight: .bold)
+        timeSelectedHabitText.textColor = UIColor(named: "purple")
+        return timeSelectedHabitText
+    }()
+    
     var timeHabitPicker: UIDatePicker = {
         let timeHabitPocker = UIDatePicker()
         timeHabitPocker.datePickerMode = .time
@@ -96,6 +93,7 @@ class HabitView: UIView {
         addSubview(timeHabitText)
         addSubview(timeHabitPicker)
         addSubview(deleteButton)
+        addSubview(timeSelectedHabitText)
         
         nameHabitLabel.translatesAutoresizingMaskIntoConstraints = false
         nameHabitText.translatesAutoresizingMaskIntoConstraints = false
@@ -105,6 +103,7 @@ class HabitView: UIView {
         timeHabitText.translatesAutoresizingMaskIntoConstraints = false
         timeHabitPicker.translatesAutoresizingMaskIntoConstraints = false
         deleteButton.translatesAutoresizingMaskIntoConstraints = false
+        timeSelectedHabitText.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             
@@ -131,8 +130,10 @@ class HabitView: UIView {
 
             timeHabitText.topAnchor.constraint(equalTo: timeHabitLabel.bottomAnchor, constant: 7),
             timeHabitText.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            timeHabitText.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             
+            timeSelectedHabitText.topAnchor.constraint(equalTo: timeHabitLabel.bottomAnchor, constant: 7),
+            timeSelectedHabitText.leadingAnchor.constraint(equalTo: timeHabitText.trailingAnchor, constant: 1),
+
             timeHabitPicker.topAnchor.constraint(equalTo: timeHabitText.bottomAnchor, constant: 15),
             timeHabitPicker.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
             timeHabitPicker.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),

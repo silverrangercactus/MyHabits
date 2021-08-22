@@ -11,15 +11,41 @@ class HabitViewController: UIViewController {
   
     var habitView = HabitView()
     
+    public var habit: Habit? {
+        didSet {
+            editHabit()
+        }
+    }
+       
+    func editHabit() {
+        if let editHabit = habit {
+            habitView.nameHabitText.text = editHabit.name
+            habitView.nameHabitText.textColor = editHabit.color
+            habitView.nameHabitText.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+            habitView.colorHabitButton.backgroundColor = editHabit.color
+            habitView.timeHabitPicker.date = editHabit.date
+            habitView.timeSelectedHabitText.text = "\(editHabit.date)"
+            navigationItem.title = "Править"
+            habitView.deleteButton.isHidden = false
+            
+            
+    } else {
+            navigationItem.title = "Создать"
+            habitView.deleteButton.isHidden = true
+            }
+        }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Создать"
         view.backgroundColor = .white
         
+        editHabit()
         setupHabitView()
         setButtoonsNavigationItem()
         tapCollorAddTarget()
         addActionTimeHabitPicker()
+        addActiondeleteHabitButton()
+        timeFormatt()
     }
     
     
@@ -39,21 +65,33 @@ class HabitViewController: UIViewController {
     
     func setButtoonsNavigationItem() {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Отменить", style: .plain, target: self, action: #selector(closeHabitViewController))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Сохранить", style: .done, target: self, action: #selector(createHabit))
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.init(named: "purple")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Сохранить", style: .done, target: self, action: #selector(createHabitAndEdit))
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.init(named: "purple")
     }
 
     @objc func closeHabitViewController() {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @objc func createHabit() {
-        let newHabit = Habit(name: "\(habitView.nameHabitText.text ?? "")", date: habitView.timeHabitPicker.date, color: (habitView.colorHabitButton.backgroundColor ?? .magenta))
+    @objc func createHabitAndEdit() {
+        if let changedHabit = self.habit {
+            changedHabit.name = habitView.nameHabitText.text ?? ""
+            changedHabit.date = habitView.timeHabitPicker.date
+            changedHabit.color = habitView.colorHabitButton.backgroundColor ?? .white
+            HabitsStore.shared.save()
+        } else {
+        let newHabit = Habit(name: "\(habitView.nameHabitText.text ?? "")",
+                            date: habitView.timeHabitPicker.date,
+                            color: (habitView.colorHabitButton.backgroundColor ?? .magenta))
+        
         let store = HabitsStore.shared
         store.habits.append(newHabit)
-//        dump(store.habits)
-        self.closeHabitViewController()
+        print(store.habits.count)
+        }
+        self.dismiss(animated: true, completion: nil)
     }
-    
+
     
     func tapCollorAddTarget() {
         habitView.colorHabitButton.addTarget(self, action: #selector(didTapSelectColor), for: .touchUpInside)
@@ -73,14 +111,51 @@ class HabitViewController: UIViewController {
     func chooseTime() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
-        let selectedDate = dateFormatter.string(from: habitView.timeHabitPicker.date)
-        habitView.timeHabitText.text = "Каждый день в " + "\(selectedDate)"
+        dateFormatter.timeStyle = .short
+        dateFormatter.dateStyle = .none
+        habitView.timeSelectedHabitText.text = dateFormatter.string(from: habitView.timeHabitPicker.date)
     }
     
     @objc func selectedDateAction() {
         chooseTime()
     }
-   
+    
+    func addActiondeleteHabitButton() {
+        habitView.deleteButton.addTarget(self, action: #selector(alertController), for: .touchUpInside)
+    }
+    
+    @objc func alertController() {
+        if let deleteHabit = habit {
+        let alertController = UIAlertController(title: "Удалить привычку?", message: "Вы хотите удалить привычку \(deleteHabit.name)", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
+        let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { _ in
+            
+            self.deleteHabit()
+            self.dismiss(animated: true, completion: nil)
+            }
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    
+    func deleteHabit() {
+        if let index = HabitsStore.shared.habits.firstIndex(of: self.habit!) {
+            HabitsStore.shared.habits.remove(at: index)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "openHabitsVC"), object: nil)
+        }
+       // HabitsStore.shared.habits.removeAll()
+    }
+    
+    
+    func timeFormatt() {
+        let timeFormatter = DateFormatter()
+        timeFormatter.timeStyle = .short
+        timeFormatter.dateStyle = .none
+        habitView.timeSelectedHabitText.text = timeFormatter.string(from: habitView.timeHabitPicker.date)
+    }
+    
 }
 
 extension HabitViewController: UIColorPickerViewControllerDelegate {

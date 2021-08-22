@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -35,7 +36,9 @@
         <scene sceneID="xE2-eq-ikM">
             <objects>
                 <navigationController id="YKG-I6-s8h" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Информация" image="info.circle.fill" catalog="system" id="qiE-VM-TJ6"/>
+                    <tabBarItem key="tabBarItem" title="Информация" image="info.circle.fill" catalog="system" id="qiE-VM-TJ6">
+                        <color key="badgeColor" name="purple"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bOq-no-VFr">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -52,10 +55,13 @@
         <scene sceneID="zNx-wM-xZN">
             <objects>
                 <navigationController storyboardIdentifier="FED1" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2p4-WD-gUr" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Привычки" image="square.split.1x2.fill" catalog="system" id="pNu-rD-Ch5"/>
+                    <tabBarItem key="tabBarItem" title="Привычки" image="rectangle.grid.1x2.fill" catalog="system" id="pNu-rD-Ch5">
+                        <color key="badgeColor" name="purple"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rF6-pn-wXF">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.63137254899999995" green="0.086274509799999996" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="N0o-Vs-hIx" kind="relationship" relationship="rootViewController" id="ff8-fF-LhO"/>
@@ -75,8 +81,9 @@
                         <viewLayoutGuide key="safeArea" id="O0w-ke-JWW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Сегодня" id="cc9-wm-NLi">
+                    <navigationItem key="navigationItem" title="Сегодня" largeTitleDisplayMode="always" id="cc9-wm-NLi">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="ukg-nJ-jxy">
+                            <color key="tintColor" name="purple"/>
                             <connections>
                                 <segue destination="zfJ-pN-hV9" kind="presentation" modalPresentationStyle="fullScreen" id="BXq-Xn-0a9"/>
                             </connections>
@@ -127,6 +134,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.63137254899999995" green="0.086274509799999996" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="2p4-WD-gUr" kind="relationship" relationship="viewControllers" id="t11-lk-H6e"/>
@@ -141,7 +149,10 @@
     <resources>
         <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="square.split.1x2.fill" catalog="system" width="128" height="114"/>
+        <image name="rectangle.grid.1x2.fill" catalog="system" width="128" height="101"/>
+        <namedColor name="purple">
+            <color red="0.63137254901960782" green="0.086274509803921567" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

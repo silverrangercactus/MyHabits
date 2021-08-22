@@ -26,12 +26,21 @@ class HabitDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.isNavigationBarHidden = false
-        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.largeTitleDisplayMode = .never
         view.backgroundColor = .white
         
         setupTableView()
         setButtoonsNavigationItem()
+        NotificationCenter.default.addObserver(self, selector: #selector(openHabitsVC), name: NSNotification.Name(rawValue: "openHabitsVC"), object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationItem.title = habit.name
+    }
+    
+    @objc func openHabitsVC() {
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     func setupTableView(){
@@ -51,17 +60,18 @@ class HabitDetailsViewController: UIViewController {
     
     func setButtoonsNavigationItem() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Править", style: .done, target: self, action: #selector(editTap))
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.init(named: "purple")
     }
     
     
     @objc func editTap() {
         let habitViewController = HabitViewController()
-        habitViewController.habitView.habit = habit
-        
+        habitViewController.habit = habit
+    
         let habitViewController1 = UINavigationController(rootViewController: habitViewController)
         habitViewController1.modalTransitionStyle = UIModalTransitionStyle.coverVertical
         habitViewController1.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        present(habitViewController1, animated: true)
+        self.present(habitViewController1, animated: true)
     }
 }
 
@@ -84,6 +94,7 @@ extension HabitDetailsViewController: UITableViewDataSource {
         cell.textLabel?.text = HabitsStore.shared.trackDateString(forIndex: indexPath.row)
             if HabitsStore.shared.habit(habit, isTrackedIn: HabitsStore.shared.dates[indexPath.item]) == true {
             cell.accessoryType = .checkmark
+                cell.tintColor = UIColor.init(named: "purple")
         }
        return cell
     }

@@ -13,6 +13,7 @@ class ProgressCollectionViewCell: UICollectionViewCell {
     
     var progressView: UIProgressView = {
         let progressView = UIProgressView()
+        progressView.progressTintColor = UIColor.init(named: "purple")
         return progressView
     }()
     
