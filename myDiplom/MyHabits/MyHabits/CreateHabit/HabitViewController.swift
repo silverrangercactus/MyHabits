@@ -14,6 +14,7 @@ class HabitViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Создать"
+        view.backgroundColor = .white
         
         setupHabitView()
         setButtoonsNavigationItem()
@@ -38,7 +39,7 @@ class HabitViewController: UIViewController {
     
     func setButtoonsNavigationItem() {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Отменить", style: .plain, target: self, action: #selector(closeHabitViewController))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Создать", style: .done, target: self, action: #selector(createHabit))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Сохранить", style: .done, target: self, action: #selector(createHabit))
     }
 
     @objc func closeHabitViewController() {
@@ -50,7 +51,6 @@ class HabitViewController: UIViewController {
         let store = HabitsStore.shared
         store.habits.append(newHabit)
 //        dump(store.habits)
-        print(store.habits.count)
         self.closeHabitViewController()
     }
     

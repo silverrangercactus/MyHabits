@@ -20,7 +20,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
     var habit: Habit? {
         didSet {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "HH:mm"
+            dateFormatter.dateFormat = "H:mm"
             
             habitLabelCell.text = habit?.name
             habitLabelCell.textColor = habit?.color
@@ -72,13 +72,13 @@ class HabitCollectionViewCell: UICollectionViewCell {
     }()
     
     @objc func tapHabitDoneCell() {
-        if habitDoneCell.isSelected {
-            habitDoneCell.isSelected = false
-            habitDoneCell.backgroundColor = .white
-            habitDoneCell.setBackgroundImage(.none, for: .normal)
-        } else {
-            habitDoneCell.isSelected = true
-            habitDoneCell.backgroundColor = habit?.color
+//        if habitDoneCell.isSelected {
+//            habitDoneCell.isSelected = false
+//            habitDoneCell.backgroundColor = .white
+//            habitDoneCell.setBackgroundImage(.none, for: .normal)
+//        } else {
+//            habitDoneCell.isSelected = true
+//            habitDoneCell.backgroundColor = habit?.color
             habitDoneCell.setBackgroundImage(UIImage(systemName: "checkmark"), for: .selected)
             dataDelegate?.reloadData()
                 if habit?.isAlreadyTakenToday == false {
@@ -86,7 +86,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
                 } else {
                     return
                 }
-            }
+          //  }
     }
     
     override init(frame: CGRect) {

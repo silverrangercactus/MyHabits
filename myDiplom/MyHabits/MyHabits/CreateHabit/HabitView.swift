@@ -8,6 +8,16 @@
 import UIKit
 
 class HabitView: UIView {
+    
+    public var habit: Habit? {
+        didSet {
+            nameHabitText.text = habit?.name
+            nameHabitText.textColor = habit?.color
+            colorHabitButton.backgroundColor = habit?.color
+            timeHabitText.text = String(describing: (habit!.dateString))
+            timeHabitPicker.date = habit!.date
+        }
+    }
 
     var nameHabitLabel: UILabel = {
         let nameHabitLabel = UILabel()
@@ -62,6 +72,14 @@ class HabitView: UIView {
         timeHabitPocker.preferredDatePickerStyle = .wheels
         return timeHabitPocker
     }()
+    
+    var deleteButton: UIButton = {
+        var deleteButton = UIButton()
+        deleteButton.setTitle("Удалить привычку", for: .normal)
+        deleteButton.setTitleColor(.red, for: .normal)
+        deleteButton.titleLabel!.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        return deleteButton
+    }()
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -77,6 +95,7 @@ class HabitView: UIView {
         addSubview(timeHabitLabel)
         addSubview(timeHabitText)
         addSubview(timeHabitPicker)
+        addSubview(deleteButton)
         
         nameHabitLabel.translatesAutoresizingMaskIntoConstraints = false
         nameHabitText.translatesAutoresizingMaskIntoConstraints = false
@@ -85,6 +104,7 @@ class HabitView: UIView {
         timeHabitLabel.translatesAutoresizingMaskIntoConstraints = false
         timeHabitText.translatesAutoresizingMaskIntoConstraints = false
         timeHabitPicker.translatesAutoresizingMaskIntoConstraints = false
+        deleteButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             
@@ -116,8 +136,9 @@ class HabitView: UIView {
             timeHabitPicker.topAnchor.constraint(equalTo: timeHabitText.bottomAnchor, constant: 15),
             timeHabitPicker.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
             timeHabitPicker.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-        
-        
+            
+            deleteButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -52),
+            deleteButton.centerXAnchor.constraint(equalTo: centerXAnchor)
         
         ])
     }

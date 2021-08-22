@@ -68,7 +68,7 @@ extension HabitsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: ProgressCollectionViewCell.self), for: indexPath) as! ProgressCollectionViewCell
-            cell.progress = HabitsStore.shared.habits[indexPath.item]
+            cell.setupProgress(progress: HabitsStore.shared.todayProgress)
             return cell
         } else {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing:
@@ -105,6 +105,19 @@ extension HabitsViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: collectionView.frame.width - 32, height: 60)
         } else {
             return CGSize(width: collectionView.frame.width - 32, height: 130)
+        }
+    }
+}
+
+
+extension HabitsViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+        let habit = HabitsStore.shared.habits[indexPath.item]
+                let vc = HabitDetailsViewController(habit: habit)
+                vc.title = HabitsStore.shared.habits[indexPath.row].name
+                self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }
