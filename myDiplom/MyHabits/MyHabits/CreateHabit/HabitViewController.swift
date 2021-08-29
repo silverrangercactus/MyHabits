@@ -19,12 +19,12 @@ class HabitViewController: UIViewController {
        
     func editHabit() {
         if let editHabit = habit {
-            habitView.nameHabitText.text = editHabit.name
-            habitView.nameHabitText.textColor = editHabit.color
-            habitView.nameHabitText.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+            habitView.nameHabitTextField.text = editHabit.name
+            habitView.nameHabitTextField.textColor = editHabit.color
+            habitView.nameHabitTextField.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
             habitView.colorHabitButton.backgroundColor = editHabit.color
             habitView.timeHabitPicker.date = editHabit.date
-            habitView.timeSelectedHabitText.text = "\(editHabit.date)"
+            habitView.timeSelectedHabitTextLabel.text = "\(editHabit.date)"
             navigationItem.title = "Править"
             habitView.deleteButton.isHidden = false
             
@@ -76,12 +76,12 @@ class HabitViewController: UIViewController {
     
     @objc func createHabitAndEdit() {
         if let changedHabit = self.habit {
-            changedHabit.name = habitView.nameHabitText.text ?? ""
+            changedHabit.name = habitView.nameHabitTextField.text ?? ""
             changedHabit.date = habitView.timeHabitPicker.date
             changedHabit.color = habitView.colorHabitButton.backgroundColor ?? .white
             HabitsStore.shared.save()
         } else {
-        let newHabit = Habit(name: "\(habitView.nameHabitText.text ?? "")",
+        let newHabit = Habit(name: "\(habitView.nameHabitTextField.text ?? "")",
                             date: habitView.timeHabitPicker.date,
                             color: (habitView.colorHabitButton.backgroundColor ?? .magenta))
         
@@ -113,7 +113,7 @@ class HabitViewController: UIViewController {
         dateFormatter.dateFormat = "HH:mm"
         dateFormatter.timeStyle = .short
         dateFormatter.dateStyle = .none
-        habitView.timeSelectedHabitText.text = dateFormatter.string(from: habitView.timeHabitPicker.date)
+        habitView.timeSelectedHabitTextLabel.text = dateFormatter.string(from: habitView.timeHabitPicker.date)
     }
     
     @objc func selectedDateAction() {
@@ -145,7 +145,6 @@ class HabitViewController: UIViewController {
             HabitsStore.shared.habits.remove(at: index)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "openHabitsVC"), object: nil)
         }
-       // HabitsStore.shared.habits.removeAll()
     }
     
     
@@ -153,7 +152,7 @@ class HabitViewController: UIViewController {
         let timeFormatter = DateFormatter()
         timeFormatter.timeStyle = .short
         timeFormatter.dateStyle = .none
-        habitView.timeSelectedHabitText.text = timeFormatter.string(from: habitView.timeHabitPicker.date)
+        habitView.timeSelectedHabitTextLabel.text = timeFormatter.string(from: habitView.timeHabitPicker.date)
     }
     
 }

@@ -22,48 +22,48 @@ class HabitCollectionViewCell: UICollectionViewCell {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "H:mm"
            
-            habitLabelCell.text = habit?.name
-            habitLabelCell.textColor = habit?.color
-            habitDescriptionCell.text = "Каждый день в " + String(describing: dateFormatter.string(from: habit!.date))
-            habitCountCell.text = "Счетчик: " + String(describing: (habit?.trackDates.count ?? 0))
-            habitDoneCell.layer.borderColor = habit?.color.cgColor
+            habitLabelCellLabel.text = habit?.name
+            habitLabelCellLabel.textColor = habit?.color
+            habitDescriptionCellLabel.text = "Каждый день в " + String(describing: dateFormatter.string(from: habit!.date))
+            habitCountCellLabel.text = "Счетчик: " + String(describing: (habit?.trackDates.count ?? 0))
+            habitDoneCellButton.layer.borderColor = habit?.color.cgColor
             
             if habit?.isAlreadyTakenToday == true {
-                habitDoneCell.backgroundColor = habit?.color
-                habitDoneCell.setImage(UIImage(systemName: "checkmark"), for: .normal)
-                habitDoneCell.tintColor = .white
+                habitDoneCellButton.backgroundColor = habit?.color
+                habitDoneCellButton.setImage(UIImage(systemName: "checkmark"), for: .normal)
+                habitDoneCellButton.tintColor = .white
             } else {
-                habitDoneCell.backgroundColor = .white
-                habitDoneCell.setBackgroundImage(.none, for: .normal)
+                habitDoneCellButton.backgroundColor = .white
+                habitDoneCellButton.setBackgroundImage(.none, for: .normal)
             }
         }
     }
     
-    var habitLabelCell: UILabel = {
+    var habitLabelCellLabel: UILabel = {
         let habitLabelCell = UILabel()
-        habitLabelCell.font = UIFont.systemFont(ofSize: 17, weight: .bold)
+        habitLabelCell.font = UIFont(name: "SFProText-Semibold", size: 17)
         habitLabelCell.numberOfLines = 2
         habitLabelCell.textColor = .black
         return habitLabelCell
     }()
     
-    var habitDescriptionCell: UILabel = {
+    var habitDescriptionCellLabel: UILabel = {
         let habitDescriptionCell = UILabel()
-        habitDescriptionCell.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        habitDescriptionCell.font = UIFont(name: "SFProText-Regular", size: 12)
         habitDescriptionCell.numberOfLines = 1
         habitDescriptionCell.textColor = .lightGray
         return habitDescriptionCell
     }()
     
-    var habitCountCell: UILabel = {
+    var habitCountCellLabel: UILabel = {
         let habitCountCell = UILabel()
-        habitCountCell.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        habitCountCell.font = UIFont(name: "SFProText-Regular", size: 13)
         habitCountCell.numberOfLines = 1
         habitCountCell.textColor = .gray
         return habitCountCell
     }()
     
-    var habitDoneCell: UIButton = {
+    var habitDoneCellButton: UIButton = {
         let habitDoneCell = UIButton()
         habitDoneCell.layer.cornerRadius = 18
         habitDoneCell.layer.masksToBounds = true
@@ -73,27 +73,20 @@ class HabitCollectionViewCell: UICollectionViewCell {
     }()
     
     @objc func tapHabitDoneCell() {
-//        if habitDoneCell.isSelected {
-//            habitDoneCell.isSelected = false
-//            habitDoneCell.backgroundColor = .white
-//            habitDoneCell.setBackgroundImage(.none, for: .normal)
-//        } else {
-//            habitDoneCell.isSelected = true
-//            habitDoneCell.backgroundColor = habit?.color
-            habitDoneCell.setBackgroundImage(UIImage(systemName: "checkmark"), for: .selected)
+            habitDoneCellButton.setBackgroundImage(UIImage(systemName: "checkmark"), for: .selected)
             dataDelegate?.reloadData()
                 if habit?.isAlreadyTakenToday == false {
                     HabitsStore.shared.track(habit!)
                 } else {
                     return
                 }
-          //  }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -101,40 +94,37 @@ class HabitCollectionViewCell: UICollectionViewCell {
     func setupViews() {
         contentView.backgroundColor = .white
         contentView.roundCornersWithRadius(12)
-        contentView.addSubview(habitLabelCell)
-        contentView.addSubview(habitDescriptionCell)
-        contentView.addSubview(habitCountCell)
-        contentView.addSubview(habitDoneCell)
+        contentView.addSubview(habitLabelCellLabel)
+        contentView.addSubview(habitDescriptionCellLabel)
+        contentView.addSubview(habitCountCellLabel)
+        contentView.addSubview(habitDoneCellButton)
         
-        habitDoneCell.addTarget(self, action: #selector(tapHabitDoneCell), for: .touchUpInside)
+        habitDoneCellButton.addTarget(self, action: #selector(tapHabitDoneCell), for: .touchUpInside)
 
-        
-        habitLabelCell.translatesAutoresizingMaskIntoConstraints = false
-        habitDescriptionCell.translatesAutoresizingMaskIntoConstraints = false
-        habitCountCell.translatesAutoresizingMaskIntoConstraints = false
-        habitDoneCell.translatesAutoresizingMaskIntoConstraints = false
+        habitLabelCellLabel.translatesAutoresizingMaskIntoConstraints = false
+        habitDescriptionCellLabel.translatesAutoresizingMaskIntoConstraints = false
+        habitCountCellLabel.translatesAutoresizingMaskIntoConstraints = false
+        habitDoneCellButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
         
-            habitLabelCell.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            habitLabelCell.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            habitLabelCell.widthAnchor.constraint(equalToConstant: 220),
+            habitLabelCellLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            habitLabelCellLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            habitLabelCellLabel.widthAnchor.constraint(equalToConstant: 220),
             
-            habitDescriptionCell.topAnchor.constraint(equalTo: habitLabelCell.bottomAnchor, constant: 4),
-            habitDescriptionCell.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            habitDescriptionCellLabel.topAnchor.constraint(equalTo: habitLabelCellLabel.bottomAnchor, constant: 4),
+            habitDescriptionCellLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             
-           // habitCountCell.topAnchor.constraint(equalTo: habitDescriptionCell.bottomAnchor, constant: 30),
-            habitCountCell.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            habitCountCell.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
+            habitCountCellLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            habitCountCellLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
             
-            habitDoneCell.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 47),
-            habitDoneCell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -25),
-            habitDoneCell.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -47),
-            habitDoneCell.widthAnchor.constraint(equalToConstant: 36),
-            habitDoneCell.heightAnchor.constraint(equalTo: habitDoneCell.widthAnchor)
+            habitDoneCellButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 47),
+            habitDoneCellButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -25),
+            habitDoneCellButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -47),
+            habitDoneCellButton.widthAnchor.constraint(equalToConstant: 36),
+            habitDoneCellButton.heightAnchor.constraint(equalTo: habitDoneCellButton.widthAnchor)
         ])
     }
-    
 }
 
 extension UIView {

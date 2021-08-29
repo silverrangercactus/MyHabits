@@ -19,16 +19,16 @@ class ProgressCollectionViewCell: UICollectionViewCell {
     
     var progressLabel: UILabel = {
         let progressLabel = UILabel()
-        progressLabel.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        progressLabel.font = UIFont(name: "SFProText-Semibold", size: 13)
         progressLabel.text = "Всё получится!"
         progressLabel.numberOfLines = 1
         progressLabel.textColor = .gray
         return progressLabel
     }()
     
-    var progressPercent: UILabel = {
+    var progressPercentLabel: UILabel = {
         let progressPercent = UILabel()
-        progressPercent.font = UIFont.systemFont(ofSize: 13, weight: .regular)
+        progressPercent.font = UIFont(name: "SFProText-Semibold", size: 13)
         progressPercent.text = ""
         progressPercent.numberOfLines = 1
         progressPercent.textColor = .gray
@@ -48,7 +48,7 @@ class ProgressCollectionViewCell: UICollectionViewCell {
     func setupProgress(progress: Float) {
         todayProgress = progress
         progressView.setProgress(progress, animated: false)
-        progressPercent.text = String(Int(HabitsStore.shared.todayProgress * 100)) + "%"
+        progressPercentLabel.text = String(Int(HabitsStore.shared.todayProgress * 100)) + "%"
 
     }
     
@@ -57,11 +57,11 @@ class ProgressCollectionViewCell: UICollectionViewCell {
         contentView.roundCornersWithRadius(12)
         contentView.addSubview(progressLabel)
         contentView.addSubview(progressView)
-        contentView.addSubview(progressPercent)
+        contentView.addSubview(progressPercentLabel)
         
         progressLabel.translatesAutoresizingMaskIntoConstraints = false
         progressView.translatesAutoresizingMaskIntoConstraints = false
-        progressPercent.translatesAutoresizingMaskIntoConstraints = false
+        progressPercentLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             
@@ -74,8 +74,8 @@ class ProgressCollectionViewCell: UICollectionViewCell {
             progressView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
             progressView.heightAnchor.constraint(equalToConstant: 7),
             
-            progressPercent.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            progressPercent.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12)
+            progressPercentLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            progressPercentLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12)
         ])
     }
 }

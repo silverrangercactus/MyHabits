@@ -12,14 +12,14 @@ class HabitView: UIView {
     var nameHabitLabel: UILabel = {
         let nameHabitLabel = UILabel()
         nameHabitLabel.text = "НАЗВАНИЕ"
-        nameHabitLabel.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
+        nameHabitLabel.font = UIFont(name: "SFProText-Semibold", size: 13)
         nameHabitLabel.textColor = .black
         return nameHabitLabel
     }()
     
-    var nameHabitText: UITextField = {
+    var nameHabitTextField: UITextField = {
         let nameHabitText = UITextField()
-        nameHabitText.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        nameHabitText.font = UIFont(name: "SFProText-Regular", size: 17)
         nameHabitText.textColor = .black
         nameHabitText.placeholder = "Бегать по утрам, спать 8 часов и т.п."
         return nameHabitText
@@ -28,7 +28,7 @@ class HabitView: UIView {
     var colorHabitLabel: UILabel = {
         let colorHabitLabel = UILabel()
         colorHabitLabel.text = "ЦВЕТ"
-        colorHabitLabel.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
+        colorHabitLabel.font = UIFont(name: "SFProText-Semibold", size: 13)
         colorHabitLabel.textColor = .black
         return colorHabitLabel
     }()
@@ -43,22 +43,22 @@ class HabitView: UIView {
     var timeHabitLabel: UILabel = {
         let timeHabitLabel = UILabel()
         timeHabitLabel.text = "ВРЕМЯ"
-        timeHabitLabel.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
+        timeHabitLabel.font = UIFont(name: "SFProText-Semibold", size: 13)
         timeHabitLabel.textColor = .black
         return timeHabitLabel
     }()
     
-    var timeHabitText: UILabel = {
+    var timeHabitTextLabel: UILabel = {
         let timeHabitText = UILabel()
         timeHabitText.text = "Каждый день в "
-        timeHabitText.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        timeHabitText.font = UIFont(name: "SFProText-Regular", size: 17)
         timeHabitText.textColor = .black
         return timeHabitText
     }()
     
-    var timeSelectedHabitText: UILabel = {
+    var timeSelectedHabitTextLabel: UILabel = {
         let timeSelectedHabitText = UILabel()
-        timeSelectedHabitText.font = UIFont.systemFont(ofSize: 17, weight: .bold)
+        timeSelectedHabitText.font = UIFont(name: "SFProText-Regular", size: 17)
         timeSelectedHabitText.textColor = UIColor(named: "purple")
         return timeSelectedHabitText
     }()
@@ -74,7 +74,7 @@ class HabitView: UIView {
         var deleteButton = UIButton()
         deleteButton.setTitle("Удалить привычку", for: .normal)
         deleteButton.setTitleColor(.red, for: .normal)
-        deleteButton.titleLabel!.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        deleteButton.titleLabel!.font = UIFont(name: "SFProText-Regular", size: 17)
         return deleteButton
     }()
 
@@ -86,24 +86,24 @@ class HabitView: UIView {
     
     func setupView() {
         addSubview(nameHabitLabel)
-        addSubview(nameHabitText)
+        addSubview(nameHabitTextField)
         addSubview(colorHabitLabel)
         addSubview(colorHabitButton)
         addSubview(timeHabitLabel)
-        addSubview(timeHabitText)
+        addSubview(timeHabitTextLabel)
         addSubview(timeHabitPicker)
         addSubview(deleteButton)
-        addSubview(timeSelectedHabitText)
+        addSubview(timeSelectedHabitTextLabel)
         
         nameHabitLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameHabitText.translatesAutoresizingMaskIntoConstraints = false
+        nameHabitTextField.translatesAutoresizingMaskIntoConstraints = false
         colorHabitLabel.translatesAutoresizingMaskIntoConstraints = false
         colorHabitButton.translatesAutoresizingMaskIntoConstraints = false
         timeHabitLabel.translatesAutoresizingMaskIntoConstraints = false
-        timeHabitText.translatesAutoresizingMaskIntoConstraints = false
+        timeHabitTextLabel.translatesAutoresizingMaskIntoConstraints = false
         timeHabitPicker.translatesAutoresizingMaskIntoConstraints = false
         deleteButton.translatesAutoresizingMaskIntoConstraints = false
-        timeSelectedHabitText.translatesAutoresizingMaskIntoConstraints = false
+        timeSelectedHabitTextLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             
@@ -111,11 +111,11 @@ class HabitView: UIView {
             nameHabitLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             nameHabitLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             
-            nameHabitText.topAnchor.constraint(equalTo: nameHabitLabel.bottomAnchor, constant: 7),
-            nameHabitText.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            nameHabitText.leadingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            nameHabitTextField.topAnchor.constraint(equalTo: nameHabitLabel.bottomAnchor, constant: 7),
+            nameHabitTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            nameHabitTextField.leadingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             
-            colorHabitLabel.topAnchor.constraint(equalTo: nameHabitText.bottomAnchor, constant: 15),
+            colorHabitLabel.topAnchor.constraint(equalTo: nameHabitTextField.bottomAnchor, constant: 15),
             colorHabitLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             colorHabitLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             
@@ -128,13 +128,13 @@ class HabitView: UIView {
             timeHabitLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             timeHabitLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
 
-            timeHabitText.topAnchor.constraint(equalTo: timeHabitLabel.bottomAnchor, constant: 7),
-            timeHabitText.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            timeHabitTextLabel.topAnchor.constraint(equalTo: timeHabitLabel.bottomAnchor, constant: 7),
+            timeHabitTextLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             
-            timeSelectedHabitText.topAnchor.constraint(equalTo: timeHabitLabel.bottomAnchor, constant: 7),
-            timeSelectedHabitText.leadingAnchor.constraint(equalTo: timeHabitText.trailingAnchor, constant: 1),
+            timeSelectedHabitTextLabel.topAnchor.constraint(equalTo: timeHabitLabel.bottomAnchor, constant: 7),
+            timeSelectedHabitTextLabel.leadingAnchor.constraint(equalTo: timeHabitTextLabel.trailingAnchor, constant: 1),
 
-            timeHabitPicker.topAnchor.constraint(equalTo: timeHabitText.bottomAnchor, constant: 15),
+            timeHabitPicker.topAnchor.constraint(equalTo: timeHabitTextLabel.bottomAnchor, constant: 15),
             timeHabitPicker.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
             timeHabitPicker.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
             

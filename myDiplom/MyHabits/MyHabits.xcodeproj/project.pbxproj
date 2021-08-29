@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2037DFD926C00A4600B28344 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037DFD826C00A4600B28344 /* AppDelegate.swift */; };
 		2037DFDB26C00A4600B28344 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037DFDA26C00A4600B28344 /* SceneDelegate.swift */; };
-		2037DFDD26C00A4600B28344 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2037DFDC26C00A4600B28344 /* ViewController.swift */; };
 		2037DFE026C00A4600B28344 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2037DFDE26C00A4600B28344 /* Main.storyboard */; };
 		2037DFE226C00A4700B28344 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2037DFE126C00A4700B28344 /* Assets.xcassets */; };
 		2037DFE526C00A4700B28344 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2037DFE326C00A4700B28344 /* LaunchScreen.storyboard */; };
@@ -27,7 +26,6 @@
 		2037DFD526C00A4600B28344 /* MyHabits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyHabits.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2037DFD826C00A4600B28344 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2037DFDA26C00A4600B28344 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2037DFDC26C00A4600B28344 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2037DFDF26C00A4600B28344 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2037DFE126C00A4700B28344 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2037DFE426C00A4700B28344 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -74,7 +72,6 @@
 			children = (
 				2037DFD826C00A4600B28344 /* AppDelegate.swift */,
 				2037DFDA26C00A4600B28344 /* SceneDelegate.swift */,
-				2037DFDC26C00A4600B28344 /* ViewController.swift */,
 				2037DFE126C00A4700B28344 /* Assets.xcassets */,
 				2037DFEC26C00A7000B28344 /* HabitsStore.swift */,
 				2037DFE326C00A4700B28344 /* LaunchScreen.storyboard */,
@@ -196,7 +193,6 @@
 				2037DFED26C00A7000B28344 /* HabitsStore.swift in Sources */,
 				2037E00626C4E85D00B28344 /* ProgressCollectionViewCell.swift in Sources */,
 				2037DFF926C0F88C00B28344 /* HabitsViewController.swift in Sources */,
-				2037DFDD26C00A4600B28344 /* ViewController.swift in Sources */,
 				2037E00926CA879A00B28344 /* HabitDetailsViewController.swift in Sources */,
 				2037E00426C3C2E400B28344 /* HabitCollectionViewCell.swift in Sources */,
 				2037DFD926C00A4600B28344 /* AppDelegate.swift in Sources */,
