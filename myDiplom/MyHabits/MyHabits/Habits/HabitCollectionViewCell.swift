@@ -41,7 +41,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     var habitLabelCellLabel: UILabel = {
         let habitLabelCell = UILabel()
-        habitLabelCell.font = UIFont(name: "SFProText-Semibold", size: 17)
+        habitLabelCell.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         habitLabelCell.numberOfLines = 2
         habitLabelCell.textColor = .black
         return habitLabelCell
@@ -49,7 +49,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     var habitDescriptionCellLabel: UILabel = {
         let habitDescriptionCell = UILabel()
-        habitDescriptionCell.font = UIFont(name: "SFProText-Regular", size: 12)
+        habitDescriptionCell.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         habitDescriptionCell.numberOfLines = 1
         habitDescriptionCell.textColor = .lightGray
         return habitDescriptionCell
@@ -57,7 +57,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     var habitCountCellLabel: UILabel = {
         let habitCountCell = UILabel()
-        habitCountCell.font = UIFont(name: "SFProText-Regular", size: 13)
+        habitCountCell.font = UIFont.systemFont(ofSize: 13, weight: .regular)
         habitCountCell.numberOfLines = 1
         habitCountCell.textColor = .gray
         return habitCountCell
@@ -73,13 +73,13 @@ class HabitCollectionViewCell: UICollectionViewCell {
     }()
     
     @objc func tapHabitDoneCell() {
-            habitDoneCellButton.setBackgroundImage(UIImage(systemName: "checkmark"), for: .selected)
-            dataDelegate?.reloadData()
-                if habit?.isAlreadyTakenToday == false {
-                    HabitsStore.shared.track(habit!)
-                } else {
-                    return
-                }
+        habitDoneCellButton.setBackgroundImage(UIImage(systemName: "checkmark"), for: .selected)
+        dataDelegate?.reloadData()
+            if habit?.isAlreadyTakenToday == false {
+                HabitsStore.shared.track(habit!)
+            } else {
+                return
+        }
     }
     
     override init(frame: CGRect) {
@@ -155,10 +155,4 @@ extension UIView {
         layer.cornerRadius = radius
         layer.maskedCorners = maskedCorners
     }
-}
-
-extension UIButton {
-     
-    
-    
 }

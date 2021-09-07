@@ -27,8 +27,6 @@ class HabitViewController: UIViewController {
             habitView.timeSelectedHabitTextLabel.text = "\(editHabit.date)"
             navigationItem.title = "Править"
             habitView.deleteButton.isHidden = false
-            
-            
     } else {
             navigationItem.title = "Создать"
             habitView.deleteButton.isHidden = true
@@ -81,13 +79,13 @@ class HabitViewController: UIViewController {
             changedHabit.color = habitView.colorHabitButton.backgroundColor ?? .white
             HabitsStore.shared.save()
         } else {
-        let newHabit = Habit(name: "\(habitView.nameHabitTextField.text ?? "")",
+            let newHabit = Habit(name: "\(habitView.nameHabitTextField.text ?? "")",
                             date: habitView.timeHabitPicker.date,
                             color: (habitView.colorHabitButton.backgroundColor ?? .magenta))
         
-        let store = HabitsStore.shared
-        store.habits.append(newHabit)
-        print(store.habits.count)
+            let store = HabitsStore.shared
+            store.habits.append(newHabit)
+            print(store.habits.count)
         }
         self.dismiss(animated: true, completion: nil)
     }

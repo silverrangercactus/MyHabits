@@ -15,13 +15,13 @@ class HabitDetailsViewController: UIViewController {
     let habit: Habit
        
     init(habit: Habit) {
-           self.habit = habit
-           super.init(nibName: nil, bundle: nil)
-       }
+        self.habit = habit
+        super.init(nibName: nil, bundle: nil)
+    }
        
     required init(coder: NSCoder) {
-           fatalError()
-       }
+        fatalError()
+    }
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,10 +76,6 @@ class HabitDetailsViewController: UIViewController {
 
 extension HabitDetailsViewController: UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        1
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         HabitsStore.shared.dates.count
     }
@@ -93,7 +89,7 @@ extension HabitDetailsViewController: UITableViewDataSource {
         cell.textLabel?.text = HabitsStore.shared.trackDateString(forIndex: indexPath.row)
             if HabitsStore.shared.habit(habit, isTrackedIn: HabitsStore.shared.dates[indexPath.item]) == true {
             cell.accessoryType = .checkmark
-                cell.tintColor = UIColor.init(named: "purple")
+            cell.tintColor = UIColor.init(named: "purple")
         }
        return cell
     }

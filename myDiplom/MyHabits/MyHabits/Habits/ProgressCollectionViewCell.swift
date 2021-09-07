@@ -19,7 +19,7 @@ class ProgressCollectionViewCell: UICollectionViewCell {
     
     var progressLabel: UILabel = {
         let progressLabel = UILabel()
-        progressLabel.font = UIFont(name: "SFProText-Semibold", size: 13)
+        progressLabel.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
         progressLabel.text = "Всё получится!"
         progressLabel.numberOfLines = 1
         progressLabel.textColor = .gray
@@ -28,7 +28,7 @@ class ProgressCollectionViewCell: UICollectionViewCell {
     
     var progressPercentLabel: UILabel = {
         let progressPercent = UILabel()
-        progressPercent.font = UIFont(name: "SFProText-Semibold", size: 13)
+        progressPercent.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
         progressPercent.text = ""
         progressPercent.numberOfLines = 1
         progressPercent.textColor = .gray

@@ -12,14 +12,14 @@ class HabitView: UIView {
     var nameHabitLabel: UILabel = {
         let nameHabitLabel = UILabel()
         nameHabitLabel.text = "НАЗВАНИЕ"
-        nameHabitLabel.font = UIFont(name: "SFProText-Semibold", size: 13)
+        nameHabitLabel.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
         nameHabitLabel.textColor = .black
         return nameHabitLabel
     }()
     
     var nameHabitTextField: UITextField = {
         let nameHabitText = UITextField()
-        nameHabitText.font = UIFont(name: "SFProText-Regular", size: 17)
+        nameHabitText.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         nameHabitText.textColor = .black
         nameHabitText.placeholder = "Бегать по утрам, спать 8 часов и т.п."
         return nameHabitText
@@ -28,7 +28,7 @@ class HabitView: UIView {
     var colorHabitLabel: UILabel = {
         let colorHabitLabel = UILabel()
         colorHabitLabel.text = "ЦВЕТ"
-        colorHabitLabel.font = UIFont(name: "SFProText-Semibold", size: 13)
+        colorHabitLabel.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
         colorHabitLabel.textColor = .black
         return colorHabitLabel
     }()
@@ -43,7 +43,7 @@ class HabitView: UIView {
     var timeHabitLabel: UILabel = {
         let timeHabitLabel = UILabel()
         timeHabitLabel.text = "ВРЕМЯ"
-        timeHabitLabel.font = UIFont(name: "SFProText-Semibold", size: 13)
+        timeHabitLabel.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
         timeHabitLabel.textColor = .black
         return timeHabitLabel
     }()
@@ -51,14 +51,14 @@ class HabitView: UIView {
     var timeHabitTextLabel: UILabel = {
         let timeHabitText = UILabel()
         timeHabitText.text = "Каждый день в "
-        timeHabitText.font = UIFont(name: "SFProText-Regular", size: 17)
+        timeHabitText.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         timeHabitText.textColor = .black
         return timeHabitText
     }()
     
     var timeSelectedHabitTextLabel: UILabel = {
         let timeSelectedHabitText = UILabel()
-        timeSelectedHabitText.font = UIFont(name: "SFProText-Regular", size: 17)
+        timeSelectedHabitText.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         timeSelectedHabitText.textColor = UIColor(named: "purple")
         return timeSelectedHabitText
     }()
@@ -74,7 +74,7 @@ class HabitView: UIView {
         var deleteButton = UIButton()
         deleteButton.setTitle("Удалить привычку", for: .normal)
         deleteButton.setTitleColor(.red, for: .normal)
-        deleteButton.titleLabel!.font = UIFont(name: "SFProText-Regular", size: 17)
+        deleteButton.titleLabel!.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         return deleteButton
     }()
 
