@@ -9,6 +9,8 @@ import UIKit
 
 class HabitView: UIView {
     
+    var stackView = UIStackView()
+    
     var nameHabitLabel: UILabel = {
         let nameHabitLabel = UILabel()
         nameHabitLabel.text = "НАЗВАНИЕ"
@@ -80,68 +82,64 @@ class HabitView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         setupView()
     }
     
+    
     func setupView() {
-        addSubview(nameHabitLabel)
-        addSubview(nameHabitTextField)
-        addSubview(colorHabitLabel)
-        addSubview(colorHabitButton)
-        addSubview(timeHabitLabel)
-        addSubview(timeHabitTextLabel)
-        addSubview(timeHabitPicker)
-        addSubview(deleteButton)
-        addSubview(timeSelectedHabitTextLabel)
+        addSubview(stackView)
+        stackView.axis = .vertical
+        stackView.spacing = 15
+        stackView.alignment = .top
+        stackView.distribution = .fill
         
-        nameHabitLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameHabitTextField.translatesAutoresizingMaskIntoConstraints = false
-        colorHabitLabel.translatesAutoresizingMaskIntoConstraints = false
-        colorHabitButton.translatesAutoresizingMaskIntoConstraints = false
-        timeHabitLabel.translatesAutoresizingMaskIntoConstraints = false
-        timeHabitTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        timeHabitPicker.translatesAutoresizingMaskIntoConstraints = false
-        deleteButton.translatesAutoresizingMaskIntoConstraints = false
+        stackView.addArrangedSubview(nameHabitLabel)
+        stackView.addArrangedSubview(nameHabitTextField)
+        stackView.addArrangedSubview(colorHabitLabel)
+        stackView.addArrangedSubview(colorHabitButton)
+        stackView.addArrangedSubview(timeHabitLabel)
+        stackView.addArrangedSubview(timeHabitTextLabel)
+        stackView.addArrangedSubview(timeHabitPicker)
+        addSubview(timeSelectedHabitTextLabel)
+        addSubview(deleteButton)
+
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         timeSelectedHabitTextLabel.translatesAutoresizingMaskIntoConstraints = false
+        deleteButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        stackView.setCustomSpacing(7, after: nameHabitLabel)
+        stackView.setCustomSpacing(7, after: colorHabitLabel)
+        stackView.setCustomSpacing(7, after: timeHabitLabel)
         
         NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 21),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            nameHabitLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 21),
-            nameHabitLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            nameHabitLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            
-            nameHabitTextField.topAnchor.constraint(equalTo: nameHabitLabel.bottomAnchor, constant: 7),
-            nameHabitTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            nameHabitTextField.leadingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            
-            colorHabitLabel.topAnchor.constraint(equalTo: nameHabitTextField.bottomAnchor, constant: 15),
-            colorHabitLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            colorHabitLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            
-            colorHabitButton.topAnchor.constraint(equalTo: colorHabitLabel.bottomAnchor, constant: 7),
-            colorHabitButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             colorHabitButton.widthAnchor.constraint(equalToConstant: 30),
             colorHabitButton.heightAnchor.constraint(equalTo: colorHabitButton.widthAnchor),
             
-            timeHabitLabel.topAnchor.constraint(equalTo: colorHabitButton.bottomAnchor, constant: 15),
             timeHabitLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            timeHabitLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
 
-            timeHabitTextLabel.topAnchor.constraint(equalTo: timeHabitLabel.bottomAnchor, constant: 7),
-            timeHabitTextLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            
-            timeSelectedHabitTextLabel.topAnchor.constraint(equalTo: timeHabitLabel.bottomAnchor, constant: 7),
             timeSelectedHabitTextLabel.leadingAnchor.constraint(equalTo: timeHabitTextLabel.trailingAnchor, constant: 1),
+            timeSelectedHabitTextLabel.topAnchor.constraint(equalTo: timeHabitLabel.bottomAnchor, constant: 7),
 
-            timeHabitPicker.topAnchor.constraint(equalTo: timeHabitTextLabel.bottomAnchor, constant: 15),
-            timeHabitPicker.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            timeHabitPicker.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
-            
+            timeHabitPicker.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            timeHabitPicker.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+
             deleteButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -52),
             deleteButton.centerXAnchor.constraint(equalTo: centerXAnchor)
-        
         ])
     }
-
 }
+
+
+
+
+
+
+
+
+
+
+

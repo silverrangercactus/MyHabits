@@ -108,10 +108,10 @@ extension HabitsViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 1 {
-        let habit = HabitsStore.shared.habits[indexPath.item]
-                let vc = HabitDetailsViewController(habit: habit)
-                vc.title = HabitsStore.shared.habits[indexPath.row].name
-                self.navigationController?.pushViewController(vc, animated: true)
+            let habit = HabitsStore.shared.habits[indexPath.row]
+            let vc = HabitDetailsViewController(habit: habit)
+            vc.title = HabitsStore.shared.habits[indexPath.row].name
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }
@@ -122,6 +122,4 @@ extension HabitsViewController: ReloadDataDelegate {
     func reloadData() {
         habitsViewCollectian.reloadData()
     }
-    
-    
 }

@@ -30,7 +30,6 @@ class HabitDetailsViewController: UIViewController {
         
         setupTableView()
         setButtoonsNavigationItem()
-        NotificationCenter.default.addObserver(self, selector: #selector(openHabitsVC), name: NSNotification.Name(rawValue: "openHabitsVC"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,6 +70,7 @@ class HabitDetailsViewController: UIViewController {
         habitViewController1.modalTransitionStyle = UIModalTransitionStyle.coverVertical
         habitViewController1.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         self.present(habitViewController1, animated: true)
+        habitViewController.reloadDelegate = self
     }
 }
 
@@ -86,15 +86,24 @@ extension HabitDetailsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
-        cell.textLabel?.text = HabitsStore.shared.trackDateString(forIndex: indexPath.row)
-            if HabitsStore.shared.habit(habit, isTrackedIn: HabitsStore.shared.dates[indexPath.item]) == true {
+        let indexDates = HabitsStore.shared.dates.count - indexPath.row - 1
+        cell.textLabel?.text = HabitsStore.shared.trackDateString(forIndex: indexDates)
+            
+        if HabitsStore.shared.habit(habit, isTrackedIn: HabitsStore.shared.dates[indexDates]) == true {
             cell.accessoryType = .checkmark
             cell.tintColor = UIColor.init(named: "purple")
+        } else {
+            cell.accessoryType = .none
         }
        return cell
     }
 }
 
+extension HabitDetailsViewController: ReopenVcDelegate {
+    func reopenVC() {
+        navigationController?.popToRootViewController(animated: true)
+    }
+}
 
 
 

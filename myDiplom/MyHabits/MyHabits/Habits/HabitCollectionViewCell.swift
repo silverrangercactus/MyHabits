@@ -72,6 +72,17 @@ class HabitCollectionViewCell: UICollectionViewCell {
         return habitDoneCell
     }()
     
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupViews()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     @objc func tapHabitDoneCell() {
         habitDoneCellButton.setBackgroundImage(UIImage(systemName: "checkmark"), for: .selected)
         dataDelegate?.reloadData()
@@ -82,14 +93,6 @@ class HabitCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupViews()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     func setupViews() {
         contentView.backgroundColor = .white
@@ -131,16 +134,6 @@ extension UIView {
     
     func roundCornersWithRadius(_ radius: CGFloat, top: Bool? = true, bottom: Bool? = true, shadowEnabled: Bool = true) {
         var maskedCorners = CACornerMask()
-        
-        clipsToBounds = true
-
-        if shadowEnabled {
-            layer.masksToBounds = false
-            layer.shadowOpacity = 0.5
-            layer.shadowColor = UIColor.black.cgColor
-            layer.shadowRadius = 4
-            layer.shadowOffset = CGSize(width: 4, height: 4)
-        }
         
         switch(top, bottom) {
         case (true, false):

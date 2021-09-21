@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol ReopenVcDelegate: AnyObject {
+    func reopenVC()
+}
+
 class HabitViewController: UIViewController {
-  
+    
+    var reloadDelegate: ReopenVcDelegate?
+      
     var habitView = HabitView()
     
     public var habit: Habit? {
@@ -42,7 +48,7 @@ class HabitViewController: UIViewController {
         setButtoonsNavigationItem()
         tapCollorAddTarget()
         addActionTimeHabitPicker()
-        addActiondeleteHabitButton()
+        addActionDeleteHabitButton()
         timeFormatt()
     }
     
@@ -118,7 +124,7 @@ class HabitViewController: UIViewController {
         chooseTime()
     }
     
-    func addActiondeleteHabitButton() {
+    func addActionDeleteHabitButton() {
         habitView.deleteButton.addTarget(self, action: #selector(alertController), for: .touchUpInside)
     }
     
@@ -127,9 +133,7 @@ class HabitViewController: UIViewController {
         let alertController = UIAlertController(title: "Удалить привычку?", message: "Вы хотите удалить привычку \(deleteHabit.name)", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Отмена", style: .cancel)
         let deleteAction = UIAlertAction(title: "Удалить", style: .destructive) { _ in
-            
             self.deleteHabit()
-            self.dismiss(animated: true, completion: nil)
             }
         alertController.addAction(cancelAction)
         alertController.addAction(deleteAction)
@@ -141,7 +145,9 @@ class HabitViewController: UIViewController {
     func deleteHabit() {
         if let index = HabitsStore.shared.habits.firstIndex(of: self.habit!) {
             HabitsStore.shared.habits.remove(at: index)
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "openHabitsVC"), object: nil)
+        }
+        self.dismiss(animated: true) {
+            self.reloadDelegate?.reopenVC()
         }
     }
     
