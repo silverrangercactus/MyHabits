@@ -86,10 +86,10 @@ class HabitCollectionViewCell: UICollectionViewCell {
     @objc func tapHabitDoneCell() {
         habitDoneCellButton.setBackgroundImage(UIImage(systemName: "checkmark"), for: .selected)
         dataDelegate?.reloadData()
-            if habit?.isAlreadyTakenToday == false {
-                HabitsStore.shared.track(habit!)
-            } else {
-                return
+        if habit?.isAlreadyTakenToday == false {
+            HabitsStore.shared.track(habit!)
+        } else {
+            return
         }
     }
     

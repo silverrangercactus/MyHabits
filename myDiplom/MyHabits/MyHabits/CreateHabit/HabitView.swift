@@ -127,7 +127,7 @@ class HabitView: UIView {
             timeHabitPicker.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             timeHabitPicker.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
 
-            deleteButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -52),
+            deleteButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -18),
             deleteButton.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }

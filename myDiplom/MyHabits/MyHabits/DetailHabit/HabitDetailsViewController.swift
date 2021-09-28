@@ -25,6 +25,7 @@ class HabitDetailsViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.largeTitleDisplayMode = .never
         
         view.backgroundColor = .white
         
